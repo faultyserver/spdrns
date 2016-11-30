@@ -1,0 +1,22 @@
+function: Race.join(name, password=nil)
+func_name: race_join
+meta:
+  since: v0.1
+  accessibility: public
+
+description: |-
+  Add the caller of this method to the list of participants in the race identified by `name`. For locked races, `password` must be provided and must match the password of the requested race.
+
+  On success, `:success` will be returned. If an error occurs, `:error` will be returned instead. Errors may occur
+
+samples:
+  HTTP:
+    request: |-
+      POST /races/:name/join HTTP/1.1
+
+      {"password": <password> }
+    response: |-
+      # On success:
+      200 OK
+      # On error:
+      5XX Error

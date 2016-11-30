@@ -1,0 +1,24 @@
+function: Race.observe(name)
+func_name: race_observe
+meta:
+  since: v0.1
+  accessibility: public
+
+description: |-
+  Add the caller of this method to the list of observers for the race identified by `name`. Observers will receive live updates for the race, but are unable to push updates to the race.
+
+  This behavior can be useful particularly for private races where an independent moderator is desired. The moderator should be able to observe the race as it is happening, but is not a participant, and does not need to push updates to the race.
+
+  For public races, anyone viewing the race in realtime (through spdrns.com, for example) will be given the "observer" role via an implicit call to this method.
+
+  On success, `:success` will be returned. If an error occurs, `:error` will be returned instead.
+
+samples:
+  HTTP:
+    request: |-
+      POST /races/:name/observe HTTP/1.1
+    response: |-
+      # On success:
+      200 OK
+      # On error:
+      5XX Error

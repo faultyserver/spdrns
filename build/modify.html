@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Race.modify&#40;name, **options&#41; Documentation</title>
+    <!-- <link rel="stylesheet" href="../src/css/skeleton.css"> -->
+    <link rel="stylesheet" href="../src/css/style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="proto-action">
+        <div class="proto-title">
+          <pre>Race.modify&#40;name, **options&#41;</pre>
+          <div class="proto-meta">
+              <span class="proto-meta-record">
+                <span class="proto-meta-record-key">accessibility</span>:
+                <span class="proto-meta-record-value">public</span>
+              </span>
+              <span class="proto-meta-record">
+                <span class="proto-meta-record-key">since</span>:
+                <span class="proto-meta-record-value">v0.1</span>
+              </span>
+          </div>
+        </div>
+
+        <div class="proto-description">
+          <p>Modify the Race identified by <code>identifier</code> with the given options. Only the race owner can modify the race.</p>
+
+<p>Options can include:</p>
+
+<ul><li><code>game</code>: the game being played in the race.</li><li><code>category</code>: the category being run in the race.</li><li><code>capacity</code>: the maximum number of participants the race will allow.</li><li><code>visibility</code>: the visibility level of the race. Can be either <code>public</code> or <code>private</code>.</li><li><code>password</code>: the password needed to join the race. If given as NULL, no password will be required to join.</li></ul></ul>
+
+<p>On success, the identifier for the Race will be returned. If an error occurs, <code>:error</code> will be returned instead.</p>
+        </div>
+
+        <div class="proto-samples">
+          <ul class="proto-sample-platform-select">
+                <input type="radio" id="race_modify_HTTP" name="race_modify_sample_platform" data-content-target="proto_sample_race_modify_HTTP" checked="checked">
+              <label for="race_modify_HTTP">HTTP</label>
+                <input type="radio" id="race_modify_Socket" name="race_modify_sample_platform" data-content-target="proto_sample_race_modify_Socket">
+              <label for="race_modify_Socket">Socket</label>
+                <input type="radio" id="race_modify_C#" name="race_modify_sample_platform" data-content-target="proto_sample_race_modify_C#">
+              <label for="race_modify_C#">C#</label>
+          </ul>
+
+            <div class="proto-sample" id="proto_sample_race_modify_HTTP">
+              <div class="proto-sample-content">
+                <div class="request">
+                  <pre><code>PUT /races/modify HTTP/1.1
+
+&#123;&quot;game&quot;:&#125;</code></pre>
+                </div>
+
+                <div class="response">
+                  <pre><code># On success:
+&#123; &quot;identifier&quot;: &lt;id_number&gt; &#125;
+# On error:
+&#123; &quot;error&quot;: &lt;reason_string&gt; &#125;</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="proto-sample" id="proto_sample_race_modify_Socket">
+              <div class="proto-sample-content">
+                <div class="request">
+                  <pre><code>MODIFY My Race
+&#91;options&#93;</code></pre>
+                </div>
+
+                <div class="response">
+                  <pre><code># On success:
+&#123; &quot;identifier&quot;: &lt;id_number&gt; &#125;
+# On error:
+&#123; &quot;error&quot;: &lt;reason_string&gt; &#125;
+with some more content that spans some space</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="proto-sample" id="proto_sample_race_modify_C#">
+              <div class="proto-sample-content">
+                <div class="request">
+                  <pre><code>Race.modify&#40;&quot;race name&quot;, &quot;option&quot;&#41;</code></pre>
+                </div>
+
+                <div class="response">
+                  <pre><code># On success:
+&#123; &quot;identifier&quot;: &lt;id_number&gt; &#125;
+# On error:
+&#123; &quot;error&quot;: &lt;reason_string&gt; &#125;</code></pre>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+    integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+    crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $('.proto-action').each(function() {
+      $(this).find('.proto-sample').first().toggleClass("visible");
+    });
+
+    $('input[type=radio]').change(function() {
+      $(this).closest('.proto-action').find(".proto-sample.visible").toggleClass("visible", false);
+      $('[id="'+$(this).data('content-target')+'"]').toggleClass("visible", $(this).checked);
+    });
+  </script>
+</html>

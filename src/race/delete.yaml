@@ -1,0 +1,23 @@
+function: Race.delete(name, reason="")
+func_name: race_delete
+meta:
+  since: v0.1
+  accessibility: private
+
+description: |-
+  Destroy the Race identified by `identifier`. If `reason` is given, it will be shown to all participants in the race; if omitted, a default message of "This race has been deleted by the race owner."
+
+  Only the race owner can delete the race.
+
+  On success, `:success` will be returned. If an error occurs, `:error` will be returned instead.
+
+samples:
+  HTTP:
+    request: |-
+      DELETE /races/:name/delete HTTP/1.1
+    response: |-
+      # On success:
+      200 OK
+      # On error:
+      5XX Error
+

@@ -1,0 +1,20 @@
+function: Race.leave(name)
+func_name: race_leave
+meta:
+  since: v0.1
+  accessibility: public
+
+description: |-
+  Remove the caller of this method from the list of participants in the race identified by `name`.
+
+  On success, `:success` will be returned. If an error occurs, `:error` will be returned instead.
+
+samples:
+  HTTP:
+    request: |-
+      POST /races/:name/leave HTTP/1.1
+    response: |-
+      # On success:
+      200 OK
+      # On error:
+      5XX Error

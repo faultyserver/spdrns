@@ -1,0 +1,46 @@
+<div class="proto-action <%= @config["meta"]["accessibility"] %>">
+  <div class="proto-title" id="action_<%= @config["func_name"] %>">
+    <pre><%= html_safe(@config["function"]) %></pre>
+    <div class="proto-meta">
+      <%- @config["meta"].each do |key, value| -%>
+        <span class="proto-meta-record">
+          <span class="proto-meta-record-key"><%= key %></span>:
+          <span class="proto-meta-record-value"><%= value %></span>
+        </span>
+      <%- end -%>
+    </div>
+  </div>
+
+  <div class="proto-description">
+    <%= Markdown.to_html(@config["description"].to_s) %>
+  </div>
+
+  <div class="proto-samples">
+    <ul class="proto-sample-platform-select">
+      <%- is_first = true -%>
+      <%- @config["samples"].each do |platform, _| -%>
+        <%- if is_first -%>
+          <input type="radio" id="<%= "#{@config["func_name"]}_#{platform}" %>" name="<%= @config["func_name"] %>_sample_platform" data-content-target="proto_sample_<%= "#{@config["func_name"]}_#{platform}" %>" checked="checked">
+        <%- else -%>
+          <input type="radio" id="<%= "#{@config["func_name"]}_#{platform}" %>" name="<%= @config["func_name"] %>_sample_platform" data-content-target="proto_sample_<%= "#{@config["func_name"]}_#{platform}" %>">
+        <%- end -%>
+        <label for="<%= "#{@config["func_name"]}_#{platform}" %>"><%= platform %></label>
+      <%- is_first = false -%>
+      <%- end -%>
+    </ul>
+
+    <%- @config["samples"].each do |platform, sample| -%>
+      <div class="proto-sample" id="<%= "proto_sample_#{@config["func_name"]}_#{platform}" %>">
+        <div class="proto-sample-content">
+          <div class="request">
+            <pre><code><%= html_safe(sample["request"]) %></code></pre>
+          </div>
+
+          <div class="response">
+            <pre><code><%= html_safe(sample["response"]) %></code></pre>
+          </div>
+        </div>
+      </div>
+    <%- end -%>
+  </div>
+</div>

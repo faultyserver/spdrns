@@ -1,0 +1,45 @@
+function: Race.modify(name, **options)
+func_name: race_modify
+meta:
+  since: v0.1
+  accessibility: public
+  role: owner
+
+description: |-
+  Modify the Race identified by `identifier` with the given options. Only the race owner can modify the race.
+
+  Options can include:
+    - `game`: the game being played in the race.
+    - `category`: the category being run in the race.
+    - `capacity`: the maximum number of participants the race will allow.
+    - `visibility`: the visibility level of the race. Can be either `public` or `private`.
+    - `password`: the password needed to join the race. If given as NULL, no password will be required to join.
+
+  On success, the identifier for the Race will be returned. If an error occurs, `:error` will be returned instead.
+
+samples:
+  HTTP:
+    request: |-
+      PUT /races/:name/modify HTTP/1.1
+
+      {"game":}
+    response: &json_response |-
+      # On success:
+      { "identifier": <id_number> }
+      # On error:
+      { "error": <reason_string> }
+
+  Socket:
+    request: |-
+      MODIFY My Race
+      [options]
+    response: |-
+      # On success:
+      { "identifier": <id_number> }
+      # On error:
+      { "error": <reason_string> }
+      with some more content that spans some space
+
+  C#:
+    request: Race.modify("race name", "option")
+    response: *json_response

@@ -1,0 +1,4 @@
+- template: module
+  name: Race
+  actions_dir: "src/race/"
+  output:  "build/race.html"

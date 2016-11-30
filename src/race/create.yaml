@@ -1,0 +1,42 @@
+function: Race.create(name, **options)
+func_name: race_create
+meta:
+  since: v0.1
+  accessibility: public
+
+description: |-
+  Instantiates a new Race with the given `name`, as well as any other options. `name` will be used when displaying the race publicly, along with additional options as they become available. As such, `name` must be unique among the current set of active races.
+
+  Options can include:
+
+  - `game`: the game being played in the race.
+  - `category`: the category being run in the race.
+  - `capacity`: the maximum number of participants the race will allow.
+  - `visibility`: the visibility level of the race. Can be either `public` or `private`.
+  - `password`: the password needed to join the race. If given as NULL, no password will be required to join.
+
+  The created race will be owned by the user who caller of this method.
+
+  On success, the generated identifier for the Race will be returned. If an error occurs, `:error` will be returned instead.
+
+samples:
+  HTTP:
+    request: |-
+      POST /races/create HTTP/1.1
+
+      {"game":}
+    response: &json_response |-
+      # On success:
+      { "identifier": <id_number> }
+      # On error:
+      { "error": <reason_string> }
+
+  Socket:
+    request: |-
+      CREATE My Race
+      [options]
+    response: *json_response
+
+  C#:
+    request: Race.create("race name", "option")
+    response: *json_response
